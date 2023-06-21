@@ -8,7 +8,7 @@ public class StudentController {
 
 
     @GetMapping("/students")
-    public String getStudent(){
+    public String getStudentsList(){
         return "persons/personList";
     }
 
