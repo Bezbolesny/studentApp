@@ -10,7 +10,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-      <%@include file="../dynamic/navigationMain.jsp"%>
+      <%@include file="../dynamic/navigationMain.jspf"%>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -218,7 +218,7 @@
   </div>
 
   <%@include file="../dynamic/board.jspf"%>
-  <%@include file="../dynamic/javaScript.jsp"%>
+  <%@include file="../dynamic/javaScript.jspf"%>
 
 </body>
 
