@@ -10,7 +10,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-      <%@include file="../dynamic/navigationMain.jsp"%>
+      <%@include file="../dynamic/navigationMain.jspf"%>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -88,7 +88,7 @@
 
 
  <div class="col-lg-12">
-                <a href='' class="btn btn-warning btn-block mb-3"><i
+                <a href='<c:url value="/addTask"/>' class="btn btn-warning btn-block mb-3"><i
                         class="fas fa-exclamation-triangle"></i><strong> Dodaj
                     taska</strong></a>
                 </div>
@@ -254,7 +254,7 @@
   </div>
 
       <%@include file="../dynamic/board.jspf"%>
-      <%@include file="../dynamic/javaScript.jsp"%>
+      <%@include file="../dynamic/javaScript.jspf"%>
 
 </body>
 
