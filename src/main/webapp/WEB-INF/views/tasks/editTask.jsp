@@ -87,41 +87,47 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form method="post" action='<c:url value="/addStudent"/>'>
+                <form method="post" action='<c:url value="/editTask/${student.id}"/>'>
                     <!-- Content Row -->
                     <div class="row">
                         <div class="col-xl-12 col-md-12 mb-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Imię</label>
-                                        <div class="col-10">
-                                            <input class="form-control" type="text" name="firstName"
-                                                   placeholder="uzupełnij imię">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Nazwisko</label>
-                                        <div class="col-10">
-                                            <input class="form-control" type="text" name="lastName"
-                                                   placeholder="uzupełnij nazwisko">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">URL Git</label>
-                                        <div class="col-10">
-                                            <input class="form-control" type="text" name="gitHub"
-                                                   placeholder="uzupełnij url do gita">
-                                        </div>
-                                    </div>
 
 
                                     <div class="form-group row">
-                                        <label class="col-2 col-form-label">Od czego się zaczęło:</label>
+                                        <label class="col-2 col-form-label">Wybierz kursanta</label>
                                         <div class="col-10">
-                                <textarea class="form-control" rows="5" name="start"
-                                          placeholder="napisz kilka słów co Cię zmotywowało aby zostać programistą..."></textarea>
+                                            <select class="form-control" name="student.id">
+                                                <option hidden>${task.student.firstName} ${task.student.lastName}</option>
+
+                                                <c:forEach items="${student}" var="title">
+                                                    <option value="${title.id}">${title.firstName} ${title.lastName}</option>
+                                                </c:forEach>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" value="${task.creationDate} name=" creationDate"
+                                    value="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>">
+
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Deadline</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="date" value="${task.deadline} name="
+                                                   deadline" max="3000-12-31" min="<fmt:formatDate pattern="yyyy-MM-dd"
+                                                                                                   value="${now}"/>"
+                                            placeholder="">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Tresć zadania:</label>
+                                        <div class="col-10">
+                                            <textarea class="form-control" rows="5" value="${task.description} name="
+                                                      description" placeholder="tutaj opisz zadanie..."></textarea>
                                         </div>
                                     </div>
 
@@ -130,9 +136,50 @@
                             </div>
                         </div>
                     </div>
-                    <input class="btn btn-success pull-left" type="submit" value="Wyślij" id="searchButton"></input>
-                </form>
 
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="form-group row">
+
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" value="success"
+                                                                               name="color">
+                                                <i class="btn btn-success btn-circle btn-sm"></i> poziom junior</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" value="info" name="color">
+                                                <i class="btn btn-info btn-circle btn-sm"></i> poziom junior+</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" value="secondary"
+                                                                               name="color">
+                                                <i class="btn btn-secondary btn-circle btn-sm"></i> poziom mid</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" value="primary"
+                                                                               name="color">
+                                                <i class="btn btn-primary btn-circle btn-sm"></i> poziom mid+</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" value="danger" name="color">
+                                                <i class="btn btn-danger btn-circle btn-sm"></i> poziom senior</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <input class="btn btn-success pull-left" type="submit" value="Wyślij" id="searchButton"/>
+                </form>
+                <form method="post" action='<c:url value="/deleteTask/${task.id}"/>'>
+                    <input class="btn btn-danger pull-left" type="submit" value="Usuń"/>
+                </form>
 
             </div>
             <!-- /.container-fluid -->

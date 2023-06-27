@@ -17,18 +17,18 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-//    public List<Task> getTasksList(){
-//        return taskRepository.findAll();
-//    }
-//
-//    public Task getTaskById(Long id){
-//        return taskRepository.findById(id).orElse(null);
-//    }
-//
-//    public void editTask(Task editTask){
-//        taskRepository.save(editTask);
-//    }
-//
+    public List<Task> getTasksList(){
+        return taskRepository.findAll();
+    }
+
+    public Task getTaskById(Long id){
+        return taskRepository.findById(id).orElse(null);
+    }
+
+    public void editTask(Task editTask){
+        taskRepository.save(editTask);
+    }
+
     public void deleteTask(Long id){
         taskRepository.deleteById(id);
     }

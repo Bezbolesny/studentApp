@@ -22,7 +22,9 @@ public class TaskController {
     private final StudentService studentService;
 
     @GetMapping("/tasks")
-    public String getTaskList(){
+    public String getTaskList(Model model){
+        List<Task> list = taskService.getTasksList();
+        model.addAttribute("task", list);
         return "tasks/tasks";
     }
 
@@ -36,6 +38,19 @@ public class TaskController {
     @PostMapping ("/addTask")
     public RedirectView postAddTask(Task task){
         taskService.addTask(task);
+        return new RedirectView("/tasks");
+    }
+
+    @GetMapping("/editTask/{id}")
+    public String getEditTask(@PathVariable Long id, Model model){
+        Task taskById = taskService.getTaskById(id);
+        model.addAttribute("task", taskById);
+        return "tasks/editTask";
+    }
+
+    @PostMapping("/editTask/{id}")
+    public RedirectView postEditTask(@PathVariable Long id, Task editTask){
+        taskService.editTask(editTask);
         return new RedirectView("/tasks");
     }
 
