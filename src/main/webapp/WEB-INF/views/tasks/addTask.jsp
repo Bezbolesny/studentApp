@@ -84,7 +84,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+            <form method="post" action='<c:url value="/addTask"/>'>
                     <!-- Content Row -->
                     <div class="row">
                         <div class="col-xl-12 col-md-12 mb-12">
@@ -94,23 +94,25 @@
                                    
                                    
 <div class="form-group row">
-    <label for="firstName" class="col-2 col-form-label">Wybierz kursanta</label>
+    <label class="col-2 col-form-label">Wybierz kursanta</label>
     <div class="col-10">
-  <select class="form-control" id="sel1">
+  <select class="form-control" name="student.id">
     <option hidden>wybierz</option>
-    <option>kursant1</option>
-    <option>kursant2</option>
-    <option>kursant3</option>
+
+    <c:forEach items="${student}" var="title">
+    <option value="${title.id}">${title.firstName} ${title.lastName}</option>
+    </c:forEach>
+
   </select>
     </div>
 </div>                     
-                                   
-                                   
+
+                                    <input type="hidden" name="creationDate" value="<fmt:formatDate pattern = "yyyy-MM-dd" value = "${now}" />">
                                    
                                     <div class="form-group row">
                                         <label class="col-2 col-form-label">Deadline</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="date" placeholder="">
+                                            <input class="form-control" type="date" name="deadline" max="3000-12-31" min="<fmt:formatDate pattern = "yyyy-MM-dd" value = "${now}" />" placeholder="">
                                         </div>
                             </div>
                           
@@ -118,7 +120,7 @@
                             <div class="form-group row">
                                 <label class="col-2 col-form-label">Tresć zadania:</label>
                                 <div class="col-10">
-                                <textarea class="form-control" rows="5" placeholder="tutaj opisz zadanie..."></textarea>
+                                <textarea class="form-control" rows="5" name="description" placeholder="tutaj opisz zadanie..."></textarea>
                                 </div>
                             </div>
 
@@ -137,23 +139,23 @@
                                     <div class="col-md-9 col-sm-9 col-xs-9">
                                     <div class="row">
                                     <div class="col-sm-2">
-                                    <label class="radio-inline"><input type="radio" value="success" checked>
+                                    <label class="radio-inline"><input type="radio" value="success" name="color">
                                     <i class="btn btn-success btn-circle btn-sm"></i> poziom junior</label>
                                     </div>
                                     <div class="col-sm-2">
-                                    <label class="radio-inline"><input type="radio" value="info" checked>
+                                    <label class="radio-inline"><input type="radio" value="info" name="color">
                                     <i class="btn btn-info btn-circle btn-sm"></i> poziom junior+</label>
                                     </div>
                                     <div class="col-sm-2">
-                                    <label class="radio-inline"><input type="radio" value="secondary" checked>
+                                    <label class="radio-inline"><input type="radio" value="secondary" name="color">
                                     <i class="btn btn-secondary btn-circle btn-sm"></i> poziom mid</label>
                                     </div>
                                     <div class="col-sm-2">
-                                    <label class="radio-inline"><input type="radio" value="primary" checked>
+                                    <label class="radio-inline"><input type="radio" value="primary" name="color">
                                     <i class="btn btn-primary btn-circle btn-sm"></i> poziom mid+</label>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label class="radio-inline"><input type="radio" value="danger" checked>
+                                        <label class="radio-inline"><input type="radio" value="danger" name="color">
                                             <i class="btn btn-danger btn-circle btn-sm"></i> poziom senior</label>
                                     </div>
 
@@ -166,8 +168,8 @@
                     
                     
                     
- <input class="btn btn-success pull-left" type="submit" value="Wyślij" id="searchButton"></input>
-         
+ <input class="btn btn-success pull-left" type="submit" value="Wyślij" id="searchButton"/>
+</form>
 
     
 
@@ -177,45 +179,6 @@
       </div>
       <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SDACADEMY 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Uwaga</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Wybierz „Wyloguj” poniżej, jeśli chcesz zakończyć bieżącą sesję.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Anuluj</button>
-          <a class="btn btn-primary" href="#">Wyloguj</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <%@include file="../dynamic/board.jspf"%>
   <%@include file="../dynamic/javaScript.jspf"%>
