@@ -3,6 +3,8 @@ package com.example.studentapp.service;
 import com.example.studentapp.model.Student;
 import com.example.studentapp.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +33,10 @@ public class StudentService {
 
     public void deleteStudent(Long id){
         studentRepository.deleteById(id);
+    }
+
+    public Page<Student> getAllStudent(Pageable pageable){
+        return studentRepository.findAll(pageable);
     }
 
 }

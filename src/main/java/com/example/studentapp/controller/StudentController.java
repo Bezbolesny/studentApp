@@ -4,6 +4,8 @@ import com.example.studentapp.model.Student;
 import com.example.studentapp.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.Banner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +56,11 @@ public class StudentController {
     public RedirectView deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
         return new RedirectView("/students");
+    }
+
+    @GetMapping("/allStudents")
+    public Page<Student> getAllStudent(Pageable pageable){
+        return studentService.getAllStudent(pageable);
     }
 
 }
