@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
@@ -60,5 +61,19 @@ public class TaskController {
         taskService.deleteTask(id);
         return new RedirectView("/tasks");
     }
+
+    @GetMapping("/byColor/{name}")
+    public String getByColor(@PathVariable String name){
+        taskService.findByColor(name);
+        return "tasks/tasks";
+    }
+
+    @PatchMapping("/editTask/{id}/{description}")
+    public RedirectView patchDescription(@PathVariable("id") Long id,
+                                         @PathVariable("description") String description){
+        taskService.updateDescriptionById(id, description);
+        return new RedirectView("/tasks");
+    }
+
 
 }
